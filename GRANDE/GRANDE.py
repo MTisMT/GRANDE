@@ -529,6 +529,16 @@ class GRANDE(tf.keras.Model):
 
         return preds.numpy()
 
+     def predict_proba(self, X):
+          """
+          implement `predict_proba` to make the model compatible with scikit-learn
+          self.predict already outputs probs for classification tasks
+          """
+         if self.objective == 'regression':
+             raise ValueError("predict_proba is not defined for regression tasks")
+         
+         return self.predict(X)
+
     def set_params(self, **kwargs): 
                 
         if self.config is None:
